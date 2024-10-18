@@ -1,4 +1,4 @@
-namespace HocCoder
+﻿namespace HocCoder
 {
     public partial class Form1 : Form
     {
@@ -39,76 +39,76 @@ namespace HocCoder
 
         private void BtnGui_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(TxtMailNhan.Text);
-            MessageBox.Show(TxtTieuDe.Text);
-            MessageBox.Show(TxtNoiDung.Text);
-            MessageBox.Show("Th�nh C�ng");
+            MessageBox.Show(TxtMailNhan.Text);// lấy thông báo từ text
+            MessageBox.Show(TxtTieuDe.Text);// lấy thông báo từ text
+            MessageBox.Show(TxtNoiDung.Text);// lấy thông báo từ text
+            MessageBox.Show("Thành Công");// lấy thông báo từ text
 
         }
-        public class DanhSachMailPassGui
+        public class DanhSachMailPassGui//khởi tạo class
         {
-            public string EmailGui { get; set; }
-            public string PasswordGui { get; set; }
+            public string EmailGui { get; set; }//khởi tạo biến
+            public string PasswordGui { get; set; }//khởi tạo biến
 
         }
 
         private void BtnThemMailGui_Click(object sender, EventArgs e)
         {
-            DanhSachMailPassGui Mail = new DanhSachMailPassGui();
-            Mail.EmailGui = TxtEmail.Text;
-            Mail.PasswordGui = TxtPass.Text;
-            ListMailGui.Add(Mail);
-            DGVDanhSachMailPassGui.DataSource = null;
-            DGVDanhSachMailPassGui.DataSource = ListMailGui;
+            DanhSachMailPassGui Mail = new DanhSachMailPassGui();//tạo new class để làm nơi chứa data
+            Mail.EmailGui = TxtEmail.Text;//gắn giá trị cho class
+            Mail.PasswordGui = TxtPass.Text;//gắn giá trị cho class
+            ListMailGui.Add(Mail);//add vào danh sách đã được khởi tạo
+            DGVDanhSachMailPassGui.DataSource = null;//làm trống data trên lưới
+            DGVDanhSachMailPassGui.DataSource = ListMailGui;//nạp lại data
 
         }
-        public class TieuDeNoiDungGui
+        public class TieuDeNoiDungGui//khởi tạo class
         {
-            public string TieuDeGui { get; set; }
-            public string NoiDungGui { get; set; }
+            public string TieuDeGui { get; set; }//khởi tạo biến
+            public string NoiDungGui { get; set; }//khởi tạo biến
 
         }
         private void BtnThemNoiDung_Click(object sender, EventArgs e)
         {
-            TieuDeNoiDungGui TieuNoi = new TieuDeNoiDungGui();
-            TieuNoi.TieuDeGui = TxtTieuDeGui.Text;
-            TieuNoi.NoiDungGui = TxtNoiDungGui.Text;
-            ListTieuDeGui.Add(TieuNoi);
-            DGVTieuDeNoiDungGui.DataSource = null;
-            DGVTieuDeNoiDungGui.DataSource = ListTieuDeGui;
+            TieuDeNoiDungGui TieuNoi = new TieuDeNoiDungGui();//tạo new class để làm nơi chứa data
+            TieuNoi.TieuDeGui = TxtTieuDeGui.Text;//gắn giá trị cho class
+            TieuNoi.NoiDungGui = TxtNoiDungGui.Text;//gắn giá trị cho class
+            ListTieuDeGui.Add(TieuNoi);//add vào danh sách đã được khởi tạo
+            DGVTieuDeNoiDungGui.DataSource = null;//làm trống data trên lưới
+            DGVTieuDeNoiDungGui.DataSource = ListTieuDeGui;//nạp lại data
 
         }
 
         private void BtnXoaMailGui_Click(object sender, EventArgs e)
         {
-            XoaMail(TxtEmail.Text);
+            XoaMail(TxtEmail.Text);//Gọi lại hàm xóa và truyền email cần xóa
         }
-        public void XoaMail(string emailXoa)
+        public void XoaMail(string emailXoa)//khởi tạo hàm xóa
         {
-            var email = ListMailGui.Where(x => x.EmailGui == emailXoa).FirstOrDefault();
-            ListMailGui.Remove(email);
-            LoadDataEmail();
+            var email = ListMailGui.Where(x => x.EmailGui == emailXoa).FirstOrDefault();//lọc ra email cần xóa trên danh sách
+            ListMailGui.Remove(email);//xóa email tìm được ra khỏi danh sách
+            LoadDataEmail();//Load lại data trên lưới
         }
-        public void LoadDataEmail()
+        public void LoadDataEmail()// Ham load lai data
         {
-            DGVDanhSachMailPassGui.DataSource = null;
-            DGVDanhSachMailPassGui.DataSource = ListMailGui;
+            DGVDanhSachMailPassGui.DataSource = null;//làm trống data trên lưới
+            DGVDanhSachMailPassGui.DataSource = ListMailGui;//nạp lại data
         }
 
         private void BtnXoaNoiDung_Click(object sender, EventArgs e)
         {
-            XoaNoiDung(TxtTieuDeGui.Text);
+            XoaNoiDung(TxtTieuDeGui.Text);//Gọi lại hàm xóa và truyền nội dung cần xóa
         }
-        public void XoaNoiDung(string TieuDeGuiXoa)
+        public void XoaNoiDung(string TieuDeGuiXoa)//khởi tạo hàm xóa
         {
-            var TieuDeGui = ListTieuDeGui.Where(x => x.TieuDeGui == TieuDeGuiXoa).FirstOrDefault();
-            ListTieuDeGui.Remove(TieuDeGui);
-            LoadDataTieuDe();
+            var TieuDeGui = ListTieuDeGui.Where(x => x.TieuDeGui == TieuDeGuiXoa).FirstOrDefault();//lọc ra email cần xóa trên danh sách
+            ListTieuDeGui.Remove(TieuDeGui);//xóa email tìm được ra khỏi danh sách
+            LoadDataTieuDe();//Load lại data trên lưới
         } 
-        public void LoadDataTieuDe()
+        public void LoadDataTieuDe()// Ham load lai data
         {
-            DGVTieuDeNoiDungGui.DataSource = null;
-            DGVTieuDeNoiDungGui.DataSource = ListTieuDeGui;
+            DGVTieuDeNoiDungGui.DataSource = null;//làm trống data trên lưới
+            DGVTieuDeNoiDungGui.DataSource = ListTieuDeGui;//nạp lại data
         }
     }  
 }
