@@ -65,7 +65,10 @@
             BtnThemNoiDung = new Button();
             BtnXoaNoiDung = new Button();
             label6 = new Label();
-            label16 = new Label();
+            TxtTieuDeNoiDungGui = new Label();
+            label17 = new Label();
+            TxtGhiChuGui = new TextBox();
+            BtnThemNDNhieu = new Button();
             ((System.ComponentModel.ISupportInitialize)DGVDanhSachMailPassGui).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DGVTieuDeNoiDungGui).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -111,6 +114,7 @@
             DGVDanhSachMailPassGui.RowTemplate.Height = 25;
             DGVDanhSachMailPassGui.Size = new Size(274, 206);
             DGVDanhSachMailPassGui.TabIndex = 4;
+            DGVDanhSachMailPassGui.CellClick += DGVDanhSachMailPassGui_CellClick;
             // 
             // TxtEmail
             // 
@@ -147,11 +151,13 @@
             // DGVTieuDeNoiDungGui
             // 
             DGVTieuDeNoiDungGui.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DGVTieuDeNoiDungGui.Location = new Point(847, 332);
+            DGVTieuDeNoiDungGui.Location = new Point(842, 486);
             DGVTieuDeNoiDungGui.Name = "DGVTieuDeNoiDungGui";
             DGVTieuDeNoiDungGui.RowTemplate.Height = 25;
             DGVTieuDeNoiDungGui.Size = new Size(461, 150);
             DGVTieuDeNoiDungGui.TabIndex = 9;
+            DGVTieuDeNoiDungGui.CellClick += DGVTieuDeNoiDungGui_CellClick;
+            DGVTieuDeNoiDungGui.CellContentClick += DGVTieuDeNoiDungGui_CellContentClick;
             // 
             // label1
             // 
@@ -281,7 +287,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(847, 313);
+            label13.Location = new Point(842, 467);
             label13.Name = "label13";
             label13.Size = new Size(121, 15);
             label13.TabIndex = 25;
@@ -314,6 +320,7 @@
             BtnThemNhieu.TabIndex = 28;
             BtnThemNhieu.Text = "Thêm Nhiều";
             BtnThemNhieu.UseVisualStyleBackColor = true;
+            BtnThemNhieu.Click += BtnThemNhieu_Click;
             // 
             // label14
             // 
@@ -361,6 +368,7 @@
             BtnXoaHetMailGui.TabIndex = 33;
             BtnXoaHetMailGui.Text = "Xóa Hết Mail Gui";
             BtnXoaHetMailGui.UseVisualStyleBackColor = true;
+            BtnXoaHetMailGui.Click += BtnXoaHetMailGui_Click;
             // 
             // BtnMailLoi
             // 
@@ -373,7 +381,7 @@
             // 
             // BtnThemNoiDung
             // 
-            BtnThemNoiDung.Location = new Point(1198, 258);
+            BtnThemNoiDung.Location = new Point(1198, 444);
             BtnThemNoiDung.Name = "BtnThemNoiDung";
             BtnThemNoiDung.Size = new Size(105, 23);
             BtnThemNoiDung.TabIndex = 35;
@@ -383,7 +391,7 @@
             // 
             // BtnXoaNoiDung
             // 
-            BtnXoaNoiDung.Location = new Point(1203, 488);
+            BtnXoaNoiDung.Location = new Point(842, 642);
             BtnXoaNoiDung.Name = "BtnXoaNoiDung";
             BtnXoaNoiDung.Size = new Size(105, 23);
             BtnXoaNoiDung.TabIndex = 36;
@@ -400,21 +408,51 @@
             label6.TabIndex = 18;
             label6.Text = "Email Đã Gửi";
             // 
-            // label16
+            // TxtTieuDeNoiDungGui
             // 
-            label16.AutoSize = true;
-            label16.Location = new Point(842, 9);
-            label16.Name = "label16";
-            label16.Size = new Size(121, 15);
-            label16.TabIndex = 37;
-            label16.Text = "Tiêu Đề Nội Dung Gửi";
+            TxtTieuDeNoiDungGui.AutoSize = true;
+            TxtTieuDeNoiDungGui.Location = new Point(842, 9);
+            TxtTieuDeNoiDungGui.Name = "TxtTieuDeNoiDungGui";
+            TxtTieuDeNoiDungGui.Size = new Size(121, 15);
+            TxtTieuDeNoiDungGui.TabIndex = 37;
+            TxtTieuDeNoiDungGui.Text = "Tiêu Đề Nội Dung Gửi";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(842, 266);
+            label17.Name = "label17";
+            label17.Size = new Size(71, 15);
+            label17.TabIndex = 38;
+            label17.Text = "Ghi Chú Gửi";
+            // 
+            // TxtGhiChuGui
+            // 
+            TxtGhiChuGui.Location = new Point(842, 286);
+            TxtGhiChuGui.Multiline = true;
+            TxtGhiChuGui.Name = "TxtGhiChuGui";
+            TxtGhiChuGui.Size = new Size(461, 152);
+            TxtGhiChuGui.TabIndex = 39;
+            // 
+            // BtnThemNDNhieu
+            // 
+            BtnThemNDNhieu.Location = new Point(1038, 444);
+            BtnThemNDNhieu.Name = "BtnThemNDNhieu";
+            BtnThemNDNhieu.Size = new Size(108, 23);
+            BtnThemNDNhieu.TabIndex = 40;
+            BtnThemNDNhieu.Text = "Thêm ND Nhiều";
+            BtnThemNDNhieu.UseVisualStyleBackColor = true;
+            BtnThemNDNhieu.Click += BtnThemNDNhieu_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1370, 572);
-            Controls.Add(label16);
+            ClientSize = new Size(1370, 749);
+            Controls.Add(BtnThemNDNhieu);
+            Controls.Add(TxtGhiChuGui);
+            Controls.Add(label17);
+            Controls.Add(TxtTieuDeNoiDungGui);
             Controls.Add(BtnXoaNoiDung);
             Controls.Add(BtnThemNoiDung);
             Controls.Add(BtnMailLoi);
@@ -502,6 +540,9 @@
         private Button BtnThemNoiDung;
         private Button BtnXoaNoiDung;
         private Label label6;
-        private Label label16;
+        private Label TxtTieuDeNoiDungGui;
+        private Label label17;
+        private TextBox TxtGhiChuGui;
+        private Button BtnThemNDNhieu;
     }
 }
