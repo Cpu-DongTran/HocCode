@@ -1,4 +1,7 @@
-﻿namespace HocCoder
+﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Net.Mail;
+
+namespace HocCoder
 {
     public partial class Form1 : Form
     {
@@ -39,11 +42,34 @@
 
         private void BtnGui_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(TxtMailNhan.Text);// lấy thông báo từ text
-            MessageBox.Show(TxtTieuDe.Text);// lấy thông báo từ text
-            MessageBox.Show(TxtNoiDung.Text);// lấy thông báo từ text
+            //// lidonmonen@gmail.com "shezzlxjdfcourno
+            foreach (var mailPass in ListMailGui)
+            {
+                foreach (var noiDung in ListTieuDeGui)
+                {
+                    Sendmail(mailPass.EmailGui, mailPass.PasswordGui, TxtMailNhan.Text, noiDung.TieuDeGui, noiDung.NoiDungGui);
+                }
+               
+            }
             MessageBox.Show("Thành Công");// lấy thông báo từ text
 
+        }
+        public void Sendmail(string userName,string passWord,string mailNhan, string tieuDe,string noiDung)
+        {
+            // tạo một tin nhắn và thêm những thông tin cần thiết như: ai gửi, người nhận, tên tiêu đề, và có đôi lời gì cần nhắn nhủ
+            MailMessage mail = new MailMessage("ConnieDesiin@gmail.com", mailNhan, tieuDe, noiDung); //
+            // Khi gửi HTML thì để True.
+            mail.IsBodyHtml = true;
+            //gửi tin nhắn
+            SmtpClient client = new SmtpClient("smtp.gmail.com");
+            client.Host = "smtp.gmail.com";
+            //ta không dùng cái mặc định đâu, mà sẽ dùng cái của riêng mình
+            client.UseDefaultCredentials = false;
+            client.Port = 587;
+            client.Credentials = new System.Net.NetworkCredential(userName, passWord);
+            client.EnableSsl = true;
+            client.Send(mail);
+         
         }
         public class DanhSachMailPassGui//khởi tạo class
         {
@@ -71,13 +97,21 @@
         }
         private void BtnThemNoiDung_Click(object sender, EventArgs e)
         {
-            TieuDeNoiDungGui TieuNoi = new TieuDeNoiDungGui();//tạo new class để làm nơi chứa data
-            TieuNoi.TieuDeGui = TxtTieuDeGui.Text;//gắn giá trị cho class
-            TieuNoi.NoiDungGui = TxtNoiDungGui.Text;//gắn giá trị cho class
-            TieuNoi.GhiChuGui = TxtGhiChuGui.Text;
-            ListTieuDeGui.Add(TieuNoi);//add vào danh sách đã được khởi tạo
-            DGVTieuDeNoiDungGui.DataSource = null;//làm trống data trên lưới
-            DGVTieuDeNoiDungGui.DataSource = ListTieuDeGui;//nạp lại data
+
+            if (TxtTieuDeGui.Text.Count() != 0 && TxtNoiDungGui.Text.Count() != 0)
+            {
+                TieuDeNoiDungGui TieuNoi = new TieuDeNoiDungGui();//tạo new class để làm nơi chứa data
+                TieuNoi.TieuDeGui = TxtTieuDeGui.Text;//gắn giá trị cho class
+                TieuNoi.NoiDungGui = TxtNoiDungGui.Text;//gắn giá trị cho class
+                TieuNoi.GhiChuGui = TxtGhiChuGui.Text;
+                ListTieuDeGui.Add(TieuNoi);//add vào danh sách đã được khởi tạo
+                DGVTieuDeNoiDungGui.DataSource = null;//làm trống data trên lưới
+                DGVTieuDeNoiDungGui.DataSource = ListTieuDeGui;//nạp lại data
+            }
+            else {
+                MessageBox.Show("Khong duoc de trong tieu de va noi dung");
+            }
+            
         }
 
         private void BtnXoaMailGui_Click(object sender, EventArgs e)
