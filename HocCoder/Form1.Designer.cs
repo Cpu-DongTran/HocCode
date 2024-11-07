@@ -39,16 +39,16 @@
             TxtNoiDungGui = new TextBox();
             DGVTieuDeNoiDungGui = new DataGridView();
             label1 = new Label();
-            numericUpDown1 = new NumericUpDown();
+            NBLapLai = new NumericUpDown();
             label2 = new Label();
-            numericUpDown2 = new NumericUpDown();
-            checkBox1 = new CheckBox();
+            NUThread = new NumericUpDown();
+            CBTuDong = new CheckBox();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
+            LBDaGui = new Label();
+            LBThatBai = new Label();
             label10 = new Label();
             label11 = new Label();
             label12 = new Label();
@@ -68,11 +68,13 @@
             TxtTieuDeNoiDungGui = new Label();
             label17 = new Label();
             TxtGhiChuGui = new TextBox();
-            BtnThemNDNhieu = new Button();
+            NBThoiGianGui = new NumericUpDown();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)DGVDanhSachMailPassGui).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DGVTieuDeNoiDungGui).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NBLapLai).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NUThread).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)NBThoiGianGui).BeginInit();
             SuspendLayout();
             // 
             // TxtMailNhan
@@ -169,13 +171,14 @@
             label1.Text = "Số lần lặp lại";
             label1.Click += label1_Click;
             // 
-            // numericUpDown1
+            // NBLapLai
             // 
-            numericUpDown1.Location = new Point(110, 52);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(38, 23);
-            numericUpDown1.TabIndex = 11;
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            NBLapLai.Location = new Point(110, 52);
+            NBLapLai.Name = "NBLapLai";
+            NBLapLai.Size = new Size(38, 23);
+            NBLapLai.TabIndex = 11;
+            NBLapLai.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            NBLapLai.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // label2
             // 
@@ -186,22 +189,23 @@
             label2.TabIndex = 12;
             label2.Text = "Số Thread";
             // 
-            // numericUpDown2
+            // NUThread
             // 
-            numericUpDown2.Location = new Point(362, 52);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(34, 23);
-            numericUpDown2.TabIndex = 13;
+            NUThread.Location = new Point(362, 52);
+            NUThread.Name = "NUThread";
+            NUThread.Size = new Size(34, 23);
+            NUThread.TabIndex = 13;
+            NUThread.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // checkBox1
+            // CBTuDong
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(22, 97);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(162, 19);
-            checkBox1.TabIndex = 14;
-            checkBox1.Text = "Tự Điền Tiêu Đề Nội Dung";
-            checkBox1.UseVisualStyleBackColor = true;
+            CBTuDong.AutoSize = true;
+            CBTuDong.Location = new Point(22, 97);
+            CBTuDong.Name = "CBTuDong";
+            CBTuDong.Size = new Size(162, 19);
+            CBTuDong.TabIndex = 14;
+            CBTuDong.Text = "Tự Điền Tiêu Đề Nội Dung";
+            CBTuDong.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -239,23 +243,23 @@
             label7.TabIndex = 19;
             label7.Text = "Gửi Thất Bại";
             // 
-            // label8
+            // LBDaGui
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(110, 434);
-            label8.Name = "label8";
-            label8.Size = new Size(13, 15);
-            label8.TabIndex = 20;
-            label8.Text = "0";
+            LBDaGui.AutoSize = true;
+            LBDaGui.Location = new Point(110, 434);
+            LBDaGui.Name = "LBDaGui";
+            LBDaGui.Size = new Size(13, 15);
+            LBDaGui.TabIndex = 20;
+            LBDaGui.Text = "0";
             // 
-            // label9
+            // LBThatBai
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(110, 486);
-            label9.Name = "label9";
-            label9.Size = new Size(13, 15);
-            label9.TabIndex = 21;
-            label9.Text = "0";
+            LBThatBai.AutoSize = true;
+            LBThatBai.Location = new Point(110, 486);
+            LBThatBai.Name = "LBThatBai";
+            LBThatBai.Size = new Size(13, 15);
+            LBThatBai.TabIndex = 21;
+            LBThatBai.Text = "0";
             // 
             // label10
             // 
@@ -305,12 +309,14 @@
             // 
             // BtnDung
             // 
+            BtnDung.Enabled = false;
             BtnDung.Location = new Point(336, 459);
             BtnDung.Name = "BtnDung";
             BtnDung.Size = new Size(51, 23);
             BtnDung.TabIndex = 27;
             BtnDung.Text = "Dừng";
             BtnDung.UseVisualStyleBackColor = true;
+            BtnDung.Click += BtnDung_Click;
             // 
             // BtnThemNhieu
             // 
@@ -434,22 +440,31 @@
             TxtGhiChuGui.Size = new Size(461, 152);
             TxtGhiChuGui.TabIndex = 39;
             // 
-            // BtnThemNDNhieu
+            // NBThoiGianGui
             // 
-            BtnThemNDNhieu.Location = new Point(1038, 444);
-            BtnThemNDNhieu.Name = "BtnThemNDNhieu";
-            BtnThemNDNhieu.Size = new Size(108, 23);
-            BtnThemNDNhieu.TabIndex = 40;
-            BtnThemNDNhieu.Text = "Thêm ND Nhiều";
-            BtnThemNDNhieu.UseVisualStyleBackColor = true;
-            BtnThemNDNhieu.Click += BtnThemNDNhieu_Click;
+            NBThoiGianGui.Location = new Point(336, 93);
+            NBThoiGianGui.Name = "NBThoiGianGui";
+            NBThoiGianGui.Size = new Size(64, 23);
+            NBThoiGianGui.TabIndex = 40;
+            NBThoiGianGui.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(233, 97);
+            label8.Name = "label8";
+            label8.Size = new Size(94, 15);
+            label8.TabIndex = 41;
+            label8.Text = "Thời Gian Gửi (s)";
+            label8.Click += label8_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1370, 749);
-            Controls.Add(BtnThemNDNhieu);
+            Controls.Add(label8);
+            Controls.Add(NBThoiGianGui);
             Controls.Add(TxtGhiChuGui);
             Controls.Add(label17);
             Controls.Add(TxtTieuDeNoiDungGui);
@@ -468,17 +483,17 @@
             Controls.Add(label12);
             Controls.Add(label11);
             Controls.Add(label10);
-            Controls.Add(label9);
-            Controls.Add(label8);
+            Controls.Add(LBThatBai);
+            Controls.Add(LBDaGui);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(checkBox1);
-            Controls.Add(numericUpDown2);
+            Controls.Add(CBTuDong);
+            Controls.Add(NUThread);
             Controls.Add(label2);
-            Controls.Add(numericUpDown1);
+            Controls.Add(NBLapLai);
             Controls.Add(label1);
             Controls.Add(DGVTieuDeNoiDungGui);
             Controls.Add(TxtNoiDungGui);
@@ -496,8 +511,9 @@
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)DGVDanhSachMailPassGui).EndInit();
             ((System.ComponentModel.ISupportInitialize)DGVTieuDeNoiDungGui).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NBLapLai).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NUThread).EndInit();
+            ((System.ComponentModel.ISupportInitialize)NBThoiGianGui).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -515,16 +531,16 @@
         private TextBox TxtNoiDungGui;
         private DataGridView DGVTieuDeNoiDungGui;
         private Label label1;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown NBLapLai;
         private Label label2;
-        private NumericUpDown numericUpDown2;
-        private CheckBox checkBox1;
+        private NumericUpDown NUThread;
+        private CheckBox CBTuDong;
         private Label label3;
         private Label label4;
         private Label label5;
         private Label label7;
-        private Label label8;
-        private Label label9;
+        private Label LBDaGui;
+        private Label LBThatBai;
         private Label label10;
         private Label label11;
         private Label label12;
@@ -544,6 +560,7 @@
         private Label TxtTieuDeNoiDungGui;
         private Label label17;
         private TextBox TxtGhiChuGui;
-        private Button BtnThemNDNhieu;
+        private NumericUpDown NBThoiGianGui;
+        private Label label8;
     }
 }
