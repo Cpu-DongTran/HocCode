@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             TxtMailNhan = new TextBox();
             TxtTieuDe = new TextBox();
             TxtNoiDung = new TextBox();
@@ -70,11 +71,14 @@
             TxtGhiChuGui = new TextBox();
             NBThoiGianGui = new NumericUpDown();
             label8 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            DGVMailLoi = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)DGVDanhSachMailPassGui).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DGVTieuDeNoiDungGui).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NBLapLai).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NUThread).BeginInit();
             ((System.ComponentModel.ISupportInitialize)NBThoiGianGui).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DGVMailLoi).BeginInit();
             SuspendLayout();
             // 
             // TxtMailNhan
@@ -384,6 +388,7 @@
             BtnMailLoi.TabIndex = 34;
             BtnMailLoi.Text = "Mail Lỗi";
             BtnMailLoi.UseVisualStyleBackColor = true;
+            BtnMailLoi.Click += BtnMailLoi_Click;
             // 
             // BtnThemNoiDung
             // 
@@ -458,11 +463,25 @@
             label8.Text = "Thời Gian Gửi (s)";
             label8.Click += label8_Click;
             // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
+            // 
+            // DGVMailLoi
+            // 
+            DGVMailLoi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DGVMailLoi.Location = new Point(501, 488);
+            DGVMailLoi.Name = "DGVMailLoi";
+            DGVMailLoi.RowTemplate.Height = 25;
+            DGVMailLoi.Size = new Size(274, 150);
+            DGVMailLoi.TabIndex = 42;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1370, 749);
+            ClientSize = new Size(1370, 708);
+            Controls.Add(DGVMailLoi);
             Controls.Add(label8);
             Controls.Add(NBThoiGianGui);
             Controls.Add(TxtGhiChuGui);
@@ -514,6 +533,7 @@
             ((System.ComponentModel.ISupportInitialize)NBLapLai).EndInit();
             ((System.ComponentModel.ISupportInitialize)NUThread).EndInit();
             ((System.ComponentModel.ISupportInitialize)NBThoiGianGui).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DGVMailLoi).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -562,5 +582,7 @@
         private TextBox TxtGhiChuGui;
         private NumericUpDown NBThoiGianGui;
         private Label label8;
+        private System.Windows.Forms.Timer timer1;
+        private DataGridView DGVMailLoi;
     }
 }

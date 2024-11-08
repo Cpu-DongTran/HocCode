@@ -1,9 +1,6 @@
 ﻿using System.Data;
-using System.IO;
 using System.Net.Mail;
-using System.Xml;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+
 
 namespace HocCoder
 {
@@ -15,6 +12,7 @@ namespace HocCoder
         }
         #region Classs //Gom Nhóm
         List<DanhSachMailPassGui> ListMailGui = new List<DanhSachMailPassGui>();
+        List<DanhSachMailLoi> ListMailLoi = new List<DanhSachMailLoi>();
         List<TieuDeNoiDungGui> ListTieuDeGui = new List<TieuDeNoiDungGui>();
         bool run = true;
         int thanhCong = 0;
@@ -74,11 +72,11 @@ namespace HocCoder
             {
                 string readText = File.ReadAllText("NoiDung.txt");
                 var chuoi = readText.Replace("\r", "").Split('\n');
-                foreach (var noidung in chuoi) 
+                foreach (var noidung in chuoi)
                 {
                     var chuoidacat = noidung.Split("|");
                     TieuDeNoiDungGui tieude = new TieuDeNoiDungGui();
-                    if (chuoidacat.Count() > 1) 
+                    if (chuoidacat.Count() > 1)
                     {
                         tieude.TieuDeGui = chuoidacat[0];
                         tieude.NoiDungGui = chuoidacat[1];
@@ -94,7 +92,6 @@ namespace HocCoder
                         }
 
                     }
-
                 }
             }
             catch (Exception)
@@ -131,7 +128,7 @@ namespace HocCoder
         }
         public void ClickSendMail()
         {
-            
+
             Random rd = new Random();
             for (int i = 1; i <= int.Parse(NBLapLai.Text); i++)
             {
@@ -152,7 +149,6 @@ namespace HocCoder
                             )
                             );
                         }
-
                     }
                     Invoke(new Action(() =>
                     {
@@ -164,7 +160,6 @@ namespace HocCoder
                 }
                 else
                 {
-
                     // lidonmonen@gmail.com "shezzlxjdfcourno
                     foreach (var mailPass in ListMailGui) // vòng lặp lấy data
                     {
@@ -178,7 +173,6 @@ namespace HocCoder
                         }
                         )
                         );
-
                     }
                     Invoke(new Action(() =>
                     {
@@ -215,12 +209,29 @@ namespace HocCoder
             }
             catch (Exception)
             {
-
+                DanhSachMailLoi dsMailLoi = new DanhSachMailLoi();
+                dsMailLoi.EmailGui = userName;
+                dsMailLoi.PasswordGui = passWord;
+                ListMailLoi.Add(dsMailLoi);
                 thatBai++;
+                XuatMailLoi();
+                Invoke(new Action(() =>
+                {
+                    LoadDataEmailLoi();
+                }
+                )
+                );
+                
             }
 
         }
         public class DanhSachMailPassGui//khởi tạo class
+        {
+            public string EmailGui { get; set; }//khởi tạo biến
+            public string PasswordGui { get; set; }//khởi tạo biến
+
+        }
+        public class DanhSachMailLoi//khởi tạo class
         {
             public string EmailGui { get; set; }//khởi tạo biến
             public string PasswordGui { get; set; }//khởi tạo biến
@@ -277,7 +288,7 @@ namespace HocCoder
             LoadDataEmail();//Load lại data trên lưới
             LuuFileEmail();
         }
-      
+
         public void LoadDataEmail()// Ham load lai data
         {
             DGVDanhSachMailPassGui.DataSource = null;//làm trống data trên lưới
@@ -337,7 +348,7 @@ namespace HocCoder
 
             }
         }
-        public void LuuFileNoiDung() 
+        public void LuuFileNoiDung()
         {
             using (StreamWriter writertext = new StreamWriter("NoiDung.txt"))
             {
@@ -401,6 +412,34 @@ namespace HocCoder
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnMailLoi_Click(object sender, EventArgs e)
+        {
+            LoadDataEmailLoi();
+            XuatMailLoi();
+            System.Diagnostics.Process.Start(@"MailLoi.txt");
+        }
+        public void XuatMailLoi()
+        {
+            using (StreamWriter writetext = new StreamWriter("MailLoi.txt"))
+            {
+                foreach (var item in ListMailLoi)
+                {
+                    writetext.WriteLine(item.EmailGui + "|" + item.PasswordGui);
+                }
+
+            }
+        }
+        public void LoadDataEmailLoi()// Ham load lai data
+        {
+            DGVMailLoi.DataSource = null;//làm trống data trên lưới
+            DGVMailLoi.DataSource = ListMailLoi;//nạp lại data
         }
     }
 }
